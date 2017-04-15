@@ -7,5 +7,5 @@ export default advcashSoapUrl => {
             namespaces: [],
             override: true
         }
-    })
+    }).then(response => response.MerchantWebService.MerchantWebServicePort)
 }

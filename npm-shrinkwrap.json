@@ -1,5 +1,5 @@
 {
-  "name": "src",
+  "name": "advcash",
   "version": "1.0.0",
   "dependencies": {
     "abbrev": {
@@ -1198,7 +1198,8 @@
     "lodash": {
       "version": "4.17.4",
       "from": "https://registry.npmjs.org/lodash/-/lodash-4.17.4.tgz",
-      "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.17.4.tgz"
+      "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.17.4.tgz",
+      "dev": true
     },
     "lodash._baseassign": {
       "version": "3.2.0",
