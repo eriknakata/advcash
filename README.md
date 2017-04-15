@@ -1,6 +1,6 @@
-# Project Title
+# Advcash
 
-One Paragraph of project description goes here
+node.js wrapper for [advcash](https://advcash.com) cryptocurrency exchange
 
 ## Getting Started
 
@@ -11,7 +11,7 @@ These instructions will get you a copy of the project up and running on your loc
 What things you need to install the software and how to install them
 
 ```
-Give examples
+Node 6.10.2
 ```
 
 ### Installing
