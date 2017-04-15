@@ -1,0 +1,35 @@
+{
+  "name": "advcash",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "mocha --timeout 15000 --recursive --require babel-core/register",
+    "compile": "babel -d lib/ src/",
+    "prepublish": "npm run compile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://e-nakata@bitbucket.org/e-nakata/advcash.git"
+  },
+  "keywords": [],
+  "author": "Erik Nakata",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/e-nakata/advcash#readme",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.4.0",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "mocha": "^3.2.0",
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "moment-timezone": "^0.5.13",
+    "sha.js": "^2.4.8",
+    "soap-as-promised": "^1.19.0"
+  },
+  "engines": {
+    "node": ">=6.10.2"
+  }
+}
