@@ -1,4 +1,4 @@
-import getBalances from '../src/get-balances'
+import advcash from '../src/index'
 import chai from 'chai'
 import chaiAsPromised from 'chai-as-promised'
 
@@ -13,12 +13,9 @@ chai.use(chaiAsPromised)
 describe('Get balances', () => {
     it('Should return an array of object { amount, id }', () => {
 
-        const promise = getBalances({
-            password: password,
-            apiName: apiName,
-            accountEmail: accountEmail,
-            advcashSoapUrl: advcashSoapUrl
-        })
+        const client = advcash({ password, accountEmail, apiName })
+
+        const promise = client.getbalances()
 
         return Promise.all([
             expect(promise).to.eventually.be.instanceof(Array)

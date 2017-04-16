@@ -1,4 +1,4 @@
-import checkCurrency from '../src/check-currency-exchange'
+import advcash from '../src/index'
 import chai from 'chai'
 import chaiAsPromised from 'chai-as-promised'
 
@@ -13,11 +13,9 @@ chai.use(chaiAsPromised)
 describe('Check currency exchange', () => {
     it('Should return a object { amountExchanged, rate, from, to, action, amount }', () => {
 
-        const promise = checkCurrency({
-            password: password,
-            apiName: apiName,
-            accountEmail: accountEmail,
-            advcashSoapUrl: advcashSoapUrl,
+        const client = advcash({ password, apiName, accountEmail })
+
+        const promise = client.checkCurrencyExchange({
             from: 'BTC',
             to: 'USD',
             action: 'SELL',
