@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/eriknakata/advcash.svg?branch=master)](https://travis-ci.org/eriknakata/advcash)
+
 # Advcash
 
 node.js wrapper for [advcash](https://advcash.com) cryptocurrency exchange
