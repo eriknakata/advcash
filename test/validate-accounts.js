@@ -1,4 +1,4 @@
-import validateAccounts from '../src/validate-accounts'
+import advcash from '../src/index'
 import chai from 'chai'
 import chaiAsPromised from 'chai-as-promised'
 
@@ -12,16 +12,15 @@ chai.use(chaiAsPromised)
 
 describe('Validate accounts', () => {
     it('Should return an array of object { present, accountEmail }', () => {
-
-        const email = 'teste12345@teste.com'
-
-        const promise = validateAccounts({
+        const client = advcash({
             password: password,
             apiName: apiName,
             accountEmail: accountEmail,
-            advcashSoapUrl: advcashSoapUrl,
-            emails: [email]
         })
+
+        const email = 'teste12345@teste.com'
+
+        const promise = client.validateAccounts([email])
 
         return Promise.all([
             expect(promise).to.eventually.be.instanceof(Array),

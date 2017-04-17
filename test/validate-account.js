@@ -1,4 +1,4 @@
-import validateAccount from '../src/validate-account'
+import advcash from '../src/index'
 import chai from 'chai'
 import chaiAsPromised from 'chai-as-promised'
 
@@ -12,12 +12,9 @@ chai.use(chaiAsPromised)
 
 describe('Validate account', () => {
     it('Should return an object { firstNameMatchingPercentage, lastNameMatchingPercentage }', () => {
+        const client = advcash({ password, apiName, accountEmail })
 
-        const promise = validateAccount({
-            password: password,
-            apiName: apiName,
-            accountEmail: accountEmail,
-            advcashSoapUrl: advcashSoapUrl,
+        const promise = client.validateAccount({
             email: accountEmail,
             firstName: "Test first name",
             lastName: "Test last name"
