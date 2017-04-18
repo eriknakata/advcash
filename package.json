@@ -4,7 +4,7 @@
   "description": "node.js wrapper for advcash cryptocurrency exchange",
   "main": "lib/index.js",
   "scripts": {
-    "test": "nodemon -x mocha --timeout 15000 --recursive --require babel-core/register --require dotenv/config",
+    "test": "mocha --timeout 15000 --recursive --require babel-core/register",
     "compile": "babel -d lib/ src/",
     "prepublish": "npm run compile"
   },
