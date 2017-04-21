@@ -4,7 +4,7 @@
   "description": "node.js wrapper for advcash cryptocurrency exchange",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha --timeout 15000 --recursive --require babel-core/register",
+    "test": "nyc --reporter=lcov --reporter=text mocha --timeout 10000 test/*.js",
     "compile": "babel -d lib/ src/",
     "prepublish": "npm run compile"
   },
@@ -18,12 +18,15 @@
   "homepage": "https://bitbucket.org/e-nakata/advcash#readme",
   "devDependencies": {
     "babel-cli": "^6.24.1",
+    "babel-plugin-istanbul": "^4.1.1",
     "babel-preset-env": "^1.4.0",
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
     "dotenv": "^4.0.0",
+    "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "nyc": "^10.2.0"
   },
   "dependencies": {
     "moment-timezone": "^0.5.13",
@@ -32,5 +35,12 @@
   },
   "engines": {
     "node": ">=6.10.2"
+  },
+  "nyc": {
+    "sourceMap": false,
+    "instrument": false,
+    "require": [
+      "babel-register"
+    ]
   }
 }
