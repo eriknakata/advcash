@@ -4,7 +4,7 @@
   "description": "node.js wrapper for advcash cryptocurrency exchange",
   "main": "lib/index.js",
   "scripts": {
-    "test": "nyc --reporter=lcov --reporter=text mocha --timeout 10000 test/*.js",
+    "test": "nyc --reporter=lcov mocha --timeout 10000 test/*.js",
     "compile": "babel -d lib/ src/",
     "prepublish": "npm run compile"
   },
