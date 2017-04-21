@@ -4,6 +4,8 @@ node_js:
 addons:
   code_climate:
     repo_token: $CODECLIMATE_REPO_TOKEN
+before_script:
+  - export NODE_ENV=test
 after_success:
   - npm install -g codeclimate-test-reporter
   - codeclimate-test-reporter < lcov.info
