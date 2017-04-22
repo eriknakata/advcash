@@ -6,16 +6,22 @@
   "scripts": {
     "test": "nyc --reporter=lcov mocha --timeout 10000 test/*.js",
     "compile": "babel -d lib/ src/",
-    "prepublish": "npm run compile"
+    "prepublish": "npm run compile",
+    "dev": "mocha --timeout 10000 --require babel-core/register --require dotenv/config"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://e-nakata@bitbucket.org/e-nakata/advcash.git"
+    "url": "https://github.com/eriknakata/advcash"
   },
-  "keywords": [],
-  "author": "Erik Nakata",
+  "keywords": ["advcash", "bitcoin", "cryptocurrency"],
+  "author": "Erik Nakata <erik.nakata5@gmail.com>",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/e-nakata/advcash#readme",
+  "homepage": "https://github.com/eriknakata/advcash#readme",
+  "dependencies": {
+    "moment-timezone": "^0.5.13",
+    "sha.js": "^2.4.8",
+    "soap-as-promised": "^1.19.0"
+  },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-plugin-istanbul": "^4.1.1",
@@ -28,11 +34,6 @@
     "nodemon": "^1.11.0",
     "nyc": "^10.2.0"
   },
-  "dependencies": {
-    "moment-timezone": "^0.5.13",
-    "sha.js": "^2.4.8",
-    "soap-as-promised": "^1.19.0"
-  },
   "engines": {
     "node": ">=6.10.2"
   },
@@ -42,5 +43,18 @@
     "require": [
       "babel-register"
     ]
+  },
+  "contributors": [
+    {
+      "email": "leonardocadastro69@gmail.com",
+      "name": "Leonardo Cadastro"
+    },
+    {
+      "name": "Erik Nakata",
+      "email": "erik.nakata5@gmail.com"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/eriknakata/advcash/issues"
   }
 }
