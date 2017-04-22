@@ -11,9 +11,9 @@ const advcashSoapUrl = process.env.ADVCASH_SOAP_URL
 chai.use(chaiAsPromised)
 
 describe('Check currency exchange', () => {
-    it('Should return a object { amountExchanged, rate, from, to, action, amount }', () => {
+    it('Should return a object { amountExchanged, rate, from, to, action, amount }', async () => {
 
-        const client = advcash({ password, apiName, accountEmail })
+        const client = await advcash({ password, apiName, accountEmail })
 
         const promise = client.checkCurrencyExchange({
             from: 'BTC',

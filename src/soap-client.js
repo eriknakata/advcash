@@ -1,11 +1,16 @@
 import soap from 'soap-as-promised'
 
-export default advcashSoapUrl => {
-    return soap.createClient(advcashSoapUrl, {
+export default async advcashSoapUrl => {
+    const soapClient = await soap.createClient(advcashSoapUrl, {
         endpoint: advcashSoapUrl,
         ignoredNamespaces: {
             namespaces: [],
             override: true
         }
-    }).then(response => response.MerchantWebService.MerchantWebServicePort)
+    })
+
+    return async (operation, args, map) => {
+        const response = await soapClient[operation].call(this, args)
+        return map(response.return)
+    }
 }

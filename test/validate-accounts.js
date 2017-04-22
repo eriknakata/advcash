@@ -11,8 +11,8 @@ const advcashSoapUrl = process.env.ADVCASH_SOAP_URL
 chai.use(chaiAsPromised)
 
 describe('Validate accounts', () => {
-    it('Should return an array of object { present, accountEmail }', () => {
-        const client = advcash({
+    it('Should return an array of object { present, accountEmail }', async () => {
+        const client = await advcash({
             password: password,
             apiName: apiName,
             accountEmail: accountEmail,

@@ -11,8 +11,8 @@ const advcashSoapUrl = process.env.ADVCASH_SOAP_URL
 chai.use(chaiAsPromised)
 
 describe('Validate account', () => {
-    it('Should return an object { firstNameMatchingPercentage, lastNameMatchingPercentage }', () => {
-        const client = advcash({ password, apiName, accountEmail })
+    it('Should return an object { firstNameMatchingPercentage, lastNameMatchingPercentage }', async () => {
+        const client = await advcash({ password, apiName, accountEmail })
 
         const promise = client.validateAccount({
             email: accountEmail,

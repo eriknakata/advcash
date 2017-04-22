@@ -11,9 +11,9 @@ const advcashSoapUrl = process.env.ADVCASH_SOAP_URL
 chai.use(chaiAsPromised)
 
 describe('Get balances', () => {
-    it('Should return an array of object { amount, id }', () => {
+    it('Should return an array of object { amount, id }', async () => {
 
-        const client = advcash({ password, accountEmail, apiName })
+        const client = await advcash({ password, accountEmail, apiName })
 
         const promise = client.getbalances()
 

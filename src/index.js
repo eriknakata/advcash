@@ -1,18 +1,30 @@
 import getbalances from './get-balances'
-import checkCurrency from './check-currency-exchange'
-import validateAccount from './validate-account'
-import validateAccounts from './validate-accounts'
+import checkCurrencyMap from './check-currency-exchange'
+import validateAccountMap from './validate-account'
+import validateAccountsMap from './validate-accounts'
+import requestArgs from './request-args'
+import soap from './soap-client'
 
-export default ({ password, apiName, accountEmail, advcashSoapUrl = 'https://wallet.advcash.com/wsm/merchantWebService?wsdl' }) => {
+export default async ({ password, apiName, accountEmail, advcashSoapUrl = 'https://wallet.advcash.com/wsm/merchantWebService?wsdl' }) => {
+    const arg0 = requestArgs(apiName, password, accountEmail)
+    const advcashClient = await soap(advcashSoapUrl)
+
     return {
-        getbalances: () => getbalances({ password, apiName, accountEmail, advcashSoapUrl }),
+        getbalances: () => advcashClient("getBalances", { arg0 }, getbalances),
 
-        checkCurrencyExchange: ({ from, to, action, amount }) =>
-            checkCurrency({ password, apiName, accountEmail, advcashSoapUrl, from, to, action, amount }),
+        checkCurrencyExchange: ({ from, to, action, amount }) => advcashClient("checkCurrencyExchange", {
+            arg0,
+            arg1: { from, to, action, amount }
+        }, checkCurrencyMap),
 
-        validateAccount: ({ email, firstName, lastName }) =>
-            validateAccount({ password, apiName, accountEmail, advcashSoapUrl, email, firstName, lastName }),
+        validateAccount: ({ email, firstName, lastName }) => advcashClient("validateAccount", {
+            arg0,
+            arg1: { email, firstName, lastName }
+        }, validateAccountMap),
 
-        validateAccounts: emails => validateAccounts({ password, apiName, accountEmail, advcashSoapUrl, emails })
+        validateAccounts: (emails) => advcashClient("validateAccounts", {
+            arg0,
+            arg1: emails
+        }, validateAccountsMap)
     }
 }
