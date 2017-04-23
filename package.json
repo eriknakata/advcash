@@ -19,7 +19,7 @@
     "cryptocurrency"
   ],
   "author": "Erik Nakata <erik.nakata5@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "homepage": "https://github.com/eriknakata/advcash#readme",
   "dependencies": {
     "moment-timezone": "^0.5.13",
