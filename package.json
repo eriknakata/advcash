@@ -13,7 +13,11 @@
     "type": "git",
     "url": "https://github.com/eriknakata/advcash"
   },
-  "keywords": ["advcash", "bitcoin", "cryptocurrency"],
+  "keywords": [
+    "advcash",
+    "bitcoin",
+    "cryptocurrency"
+  ],
   "author": "Erik Nakata <erik.nakata5@gmail.com>",
   "license": "ISC",
   "homepage": "https://github.com/eriknakata/advcash#readme",
@@ -35,13 +39,14 @@
     "nyc": "^10.2.0"
   },
   "engines": {
-    "node": ">=6.10.2"
+    "node": ">=6.0.0"
   },
   "nyc": {
     "sourceMap": false,
     "instrument": false,
     "require": [
-      "babel-register"
+      "babel-register",
+      "babel-polyfill"
     ]
   },
   "contributors": [
