@@ -7,7 +7,7 @@
 
 node.js wrapper for [advcash](http://wallet.advcash.com/referral/d3bd61a9-5950-4d1b-8607-ec4c0f7a3576) cryptocurrency exchange
 
-## Documentation
+### Documentation
 
 The official documentation can be found [here](https://advcash.com/files/documents/advcash.merchantapi-1.9_en.pdf)
 
@@ -41,10 +41,28 @@ var options = {
 };
 
 advcash(options).then(function(client) {
-  console.log(client)
+  // client is ready
 })
 
 ```
+
+### checkCurrencyExchange
+
+```js
+
+var params = {
+  from: "BTC",
+  to: "USD",
+  action: "SELL",
+  amount: 1.0
+};
+
+client.checkCurrencyExchange(params).then(function(response) {
+  console.log(response)
+})
+
+```
+
 
 ## Contributing
 
