@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
+    "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-istanbul": "^4.1.1",
     "babel-preset-env": "^1.4.0",
     "chai": "^3.5.0",
@@ -61,5 +62,8 @@
   ],
   "bugs": {
     "url": "https://github.com/eriknakata/advcash/issues"
-  }
+  },
+  "files": [
+    "lib"
+  ]
 }

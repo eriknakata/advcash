@@ -15,5 +15,8 @@
                 "istanbul"
             ]
         }
-    }
+    },
+    "plugins": [
+        "add-module-exports"
+    ]
 }
