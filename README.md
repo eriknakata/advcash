@@ -48,6 +48,8 @@ advcash(options).then(function(client) {
 
 ### checkCurrencyExchange
 
+Getting the currency exchange rate
+
 ```js
 
 var params = {
@@ -58,6 +60,50 @@ var params = {
 };
 
 client.checkCurrencyExchange(params).then(function(response) {
+  console.log(response)
+})
+
+```
+
+### getBalances
+
+Get Balance per User’s Wallets
+
+```js
+
+client.getBalances().then(function(balances) {
+  console.log(balances)
+})
+
+```
+
+### validateAccount
+
+Checking matching the  first and last name of the user in the Advanced Cash system with the name and last name in a third-party system
+
+```js
+
+var params = {
+  email: "email@example.com",
+  firstName: "First name example",
+  lastName: "Last name example"
+};
+
+client.validateAccount(params).then(function(response) {
+  console.log(response)
+})
+
+```
+
+### validateAccounts
+
+Validation of Account’s Existence
+
+```js
+
+var emails = ['email1@example.com', 'email2@example.com']
+
+client.validateAccounts(emails).then(function(response) {
   console.log(response)
 })
 
