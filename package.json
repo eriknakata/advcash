@@ -1,6 +1,6 @@
 {
   "name": "advcash",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "node.js wrapper for advcash cryptocurrency exchange",
   "main": "lib/index.js",
   "scripts": {
