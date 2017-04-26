@@ -127,6 +127,16 @@ client.validateAccount(params).then(function(response) {
 
 ```
 
+> Response
+
+```json
+
+  {
+    "firstNameMatchingPercentage": 90.55,
+    "rate": 55.56
+  }
+
+```
 
 
 ### validateAccounts
@@ -143,6 +153,22 @@ client.validateAccounts(emails).then(function(response) {
 
 ```
 
+> Response
+
+```json
+
+  [
+    {
+      "present": false,
+      "accountEmail": "email1@example.com"
+    },
+    {
+      "present": true,
+      "accountEmail": "email2@example.com"
+    }
+  ]
+
+```
 
 ## Contributing
 
