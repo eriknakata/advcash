@@ -50,16 +50,25 @@ advcash(options).then(function(client) {
 
 Getting the currency exchange rate
 
+#### Arguments
+
+| Name     | Type    | Description                                                         |
+|----------|---------|---------------------------------------------------------------------|
+| from     | String  | USD, EUR, RUR, GBP, UAH, BTC                                        |
+| to       | String  | USD, EUR, RUR, GBP, UAH, BTC                                        |
+| action   | String  | BUY, SELL                                                           |
+| amount   | Float   | Transaction amount (accuracy – up to two digits after decimal point)|
+
 ```js
 
-var params = {
+var arguments = {
   from: "BTC",
   to: "USD",
   action: "SELL",
   amount: 0.5
 };
 
-client.checkCurrencyExchange(params).then(function(response) {
+client.checkCurrencyExchange(arguments).then(function(response) {
   console.log(response)
 })
 
@@ -115,13 +124,13 @@ Checking matching the  first and last name of the user in the Advanced Cash syst
 
 ```js
 
-var params = {
+var arguments = {
   email: "email@example.com",
   firstName: "First name example",
   lastName: "Last name example"
 };
 
-client.validateAccount(params).then(function(response) {
+client.validateAccount(arguments).then(function(response) {
   console.log(response)
 })
 
