@@ -13,11 +13,11 @@ The official documentation can be found [here](https://advcash.com/files/documen
 
 ### Prerequisites
 
-```
-Node 6.0
-Advcash account
-Advcash api key
-```
+
+- Node 6.0
+- Advcash account ([click here](http://wallet.advcash.com/referral/d3bd61a9-5950-4d1b-8607-ec4c0f7a3576) to register)
+- Advcash api key
+
 
 ### Installing
 
@@ -56,12 +56,27 @@ var params = {
   from: "BTC",
   to: "USD",
   action: "SELL",
-  amount: 1.0
+  amount: 0.5
 };
 
 client.checkCurrencyExchange(params).then(function(response) {
   console.log(response)
 })
+
+```
+
+> Response
+
+```json
+
+  {
+    "amountExchanged": 636.32,
+    "rate": 1272.63,
+    "from": "BTC",
+    "to": "USD",
+    "action": "SELL",
+    "amount": 0.5
+  }
 
 ```
 
@@ -74,6 +89,23 @@ Get Balance per User’s Wallets
 client.getBalances().then(function(balances) {
   console.log(balances)
 })
+
+```
+
+> Response
+
+```json
+
+  [
+    {
+      "amount": 0.55,
+      "id": "U768564323906"
+    },
+    {
+      "amount": 0.80,
+      "id": "E527005319826"
+    }
+  ]
 
 ```
 
@@ -94,6 +126,8 @@ client.validateAccount(params).then(function(response) {
 })
 
 ```
+
+
 
 ### validateAccounts
 
