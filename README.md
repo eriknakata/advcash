@@ -78,14 +78,14 @@ client.checkCurrencyExchange(arguments).then(function(response) {
 
 ```json
 
-  {
-    "amountExchanged": 636.32,
-    "rate": 1272.63,
-    "from": "BTC",
-    "to": "USD",
-    "action": "SELL",
-    "amount": 0.5
-  }
+{
+  "amountExchanged": 636.32,
+  "rate": 1272.63,
+  "from": "BTC",
+  "to": "USD",
+  "action": "SELL",
+  "amount": 0.5
+}
 
 ```
 
@@ -105,16 +105,16 @@ client.getBalances().then(function(balances) {
 
 ```json
 
-  [
-    {
-      "amount": 0.55,
-      "id": "U768564323906"
-    },
-    {
-      "amount": 0.80,
-      "id": "E527005319826"
-    }
-  ]
+[
+  {
+    "amount": 0.55,
+    "id": "U768564323906"
+  },
+  {
+    "amount": 0.80,
+    "id": "E527005319826"
+  }
+]
 
 ```
 
@@ -140,10 +140,10 @@ client.validateAccount(arguments).then(function(response) {
 
 ```json
 
-  {
-    "firstNameMatchingPercentage": 90.55,
-    "rate": 55.56
-  }
+{
+  "firstNameMatchingPercentage": 90.55,
+  "rate": 55.56
+}
 
 ```
 
@@ -166,18 +166,103 @@ client.validateAccounts(emails).then(function(response) {
 
 ```json
 
-  [
-    {
-      "present": false,
-      "accountEmail": "email1@example.com"
-    },
-    {
-      "present": true,
-      "accountEmail": "email2@example.com"
-    }
-  ]
+[
+  {
+    "present": false,
+    "accountEmail": "email1@example.com"
+  },
+  {
+    "present": true,
+    "accountEmail": "email2@example.com"
+  }
+]
 
 ```
+
+### history
+
+Transaction History
+
+#### Arguments
+
+| Name                | Type    | Description                                                         |
+|---------------------|---------|---------------------------------------------------------------------|
+| from                | Int     | Ordinal number of transaction to start displaying with              |
+| count               | Int     | The number of transactions for disiplaying                          |
+| sortOrder           | String  | ASC, DESC                                                           |
+| startTimeFrom       | Date    | Start date for transactions to be selected                          |
+| startTimeTo         | Date    | End date for transactions to be selected                            |
+| transactionName     | String  | [Transaction Names](#transaction-names)                             |
+| transactionStatus   | String  | [Transaction Statuses](#transaction-statuses)                       |
+| walletId            | String  | Wallet                                                              |
+
+```js
+
+var arguments = {
+  from: 1,
+  count: 5,
+  sortOrder: "ASC",
+  startTimeFrom: new Date('2017-01-02'),
+  startTimeTo: new Date(),
+  transactionName: 'CURRENCY_EXCHANGE',
+  transactionStatus: 'COMPLETED'
+};
+
+client.history(arguments).then(function(response) {
+  console.log(response)
+})
+
+```
+
+> Response
+
+```json
+
+{ 
+  "id": "8d088e53-462c-4eb5-b596-70060db6b66d",
+  "activityLevel": 0,
+  "amount": 10.24,
+  "comment": "",
+  "currency": "EUR",
+  "direction": "OUTGOING",
+  "fullCommission": 0.00,
+  "receiverEmail": "receiver@example.com",
+  "sci": false,
+  "senderEmail": "sender@example.com",
+  "startTime": "2017-03-25T19:46:56.843Z",
+  "status": "COMPLETED",
+  "transactionName": "CURRENCY_EXCHANGE",
+  "walletDestId": "U768564448973",
+  "walletSrcId": "E5270053223408"
+}
+
+```
+
+### Transaction Statuses
+
+| Value      | Description                        |
+|------------|------------------------------------|
+| PENDING    | Transaction processing is pending  |
+| PROCESS    | Transaction is being processed     |
+| COMPLETED  | Transaction is completed           |
+| CANCELED   | Transaction is cancelled           |
+| CONFIRMED  | Transaction is confirmed           |
+
+### Transaction Names
+
+| Value                       | Description                                |
+|-----------------------------|--------------------------------------------|
+| ALL                         | All transactions regardless of their type  |
+| CHECK_DEPOSIT               | Funds deposit by bank check                |
+| WIRE_TRANSFER_DEPOSIT       | Funds deposit from bank account            |
+| WIRE_TRANSFER_WITHDRAW      | Funds withdrawal to bank account           |
+| INNER_SYSTEM                | Intrasystem funds transfer                 |
+| CURRENCY_EXCHANGE           | Currency exchange within account           |
+| BANK_CARD_TRANSFER          | Funds withdrawal to external bank card     |
+| ADVCASH_CARD_TRANSFER       | Funds transfer to Advanced Cash card       |
+| EXTERNAL_SYSTEM_DEPOSIT     | Deposit funds through third-party system   |
+| EXTERNAL_SYSTEM_WITHDRAWAL  | Withdrawal through third-party system      |
+| REPAYMENT                   | Funds repayment                            |
 
 ## Contributing
 
