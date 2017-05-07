@@ -11,6 +11,6 @@ export default async advcashSoapUrl => {
 
     return async (operation, args, map) => {
         const response = await soapClient[operation].call(this, args)
-        return map(response.return)
+        return map ? map(response.return) : response.return
     }
 }
