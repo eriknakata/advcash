@@ -10,14 +10,15 @@ const advcashSoapUrl = process.env.ADVCASH_SOAP_URL
 
 chai.use(chaiAsPromised)
 
-describe('Validation Send Money', () => {
+describe('Validation Send Money To Advcash Card', () => {
     it('Should return a null object', async () => {
         const client = await advcash({ password, apiName, accountEmail })
 
-        const promise = client.validationSendMoney({
+        const promise = client.validationSendMoneyToAdvcashCard({
             amount: 0.10,
             currency: "USD",
-            email: "leonardocadastro69@gmail.com",
+            email: "erik.nakata5@gmail.com",
+            cardType: "PLASTIC",
             note: "teste",
             savePaymentTemplate: true
         })

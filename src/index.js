@@ -37,5 +37,10 @@ export default async ({ password, apiName, accountEmail, advcashSoapUrl = 'https
             arg0,
             arg1: { from, count, sortOrder, startTimeFrom, startTimeTo, transactionName, transactionStatus, walletId }
         }, historyMap),
+
+        validationSendMoneyToAdvcashCard: ({ amount, currency, email, cardType, walletId, note, savePaymentTemplate }) => advcashClient("validationSendMoneyToAdvcashCard", {
+            arg0,
+            arg1: { amount, currency, email, cardType, walletId, note, savePaymentTemplate }
+        }),
     }
 }
