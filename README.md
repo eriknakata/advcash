@@ -54,8 +54,8 @@ Getting the currency exchange rate
 
 | Name     | Type    | Description                                                         |
 |----------|---------|---------------------------------------------------------------------|
-| from     | String  | USD, EUR, RUR, GBP, UAH, BTC                                        |
-| to       | String  | USD, EUR, RUR, GBP, UAH, BTC                                        |
+| from     | String  | [Transfer currencies](#transfer-currencies)                         |
+| to       | String  | [Transfer currencies](#transfer-currencies)                         |
 | action   | String  | BUY, SELL                                                           |
 | amount   | Float   | Transaction amount (accuracy – up to two digits after decimal point)|
 
@@ -238,6 +238,51 @@ client.history(arguments).then(function(response) {
 
 ```
 
+### validationSendMoney
+
+Validation of Intrasystem Transfer
+
+#### Arguments
+
+| Name                 | Type    | Description                                                           |
+|----------------------|---------|-----------------------------------------------------------------------|
+| amount               | Float   | Transaction amount (accuracy – up to two digits after decimal point)  |
+| currency             | String  | [Transfer currencies](#transfer-currencies)                           |
+| email                | String  | Recipient’s email (Required if “walletId” is empty)                   |
+| walletId             | String  | Recipient’s wallet (Required if “email” is empty)                     |
+| note                 | String  | Note to transaction                                                   |
+| savePaymentTemplate  | Boolean | Indicator of saving the current payment template                      |
+
+If the validation of the expected payment is successful, the response from the server will contain a blank message. If the validation is not successful, a message with an error contained in its body will be returned.
+
+```js
+
+var arguments = {
+  amount: 0.10,
+  currency: "USD",
+  email: "example@example.com",
+  note: "testing",
+  savePaymentTemplate: true
+}
+
+client.validationSendMoney(arguments).then(function(response) {
+  console.log(response) // null
+})
+.catch(function(error) {
+  console.log(error)
+})
+
+```
+
+> Response
+
+```json
+
+null
+
+```
+
+
 ### Transaction Statuses
 
 | Value      | Description                        |
@@ -263,6 +308,17 @@ client.history(arguments).then(function(response) {
 | EXTERNAL_SYSTEM_DEPOSIT     | Deposit funds through third-party system   |
 | EXTERNAL_SYSTEM_WITHDRAWAL  | Withdrawal through third-party system      |
 | REPAYMENT                   | Funds repayment                            |
+
+### Transfer Currencies
+
+| Value | Description        |
+|-------|--------------------|
+| USD   | US Dollar          |
+| EUR   | Euro               |
+| RUR   | Russian Rouble     |
+| GBP   | Pound Sterling     |
+| UAH   | Ukrainian Hryvnia  |
+| BTC   | Bitcoin            |
 
 ## Contributing
 
