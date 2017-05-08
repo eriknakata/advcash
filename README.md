@@ -282,6 +282,52 @@ null
 
 ```
 
+### validationSendMoneyToAdvcashCard
+
+Validation of Funds Transfer to Advanced Cash Card
+
+#### Arguments
+
+| Name                 | Type    | Description                                                                    |
+|----------------------|---------|--------------------------------------------------------------------------------|
+| amount               | Float   | Transaction amount (accuracy – up to two digits after decimal point)           |
+| currency             | String  | [Transfer currencies](#transfer-currencies)                                    |
+| email                | String  | Email of the user that owns the card                                           |
+| cardType             | String  | [Card type which will be used for the transfer of funds](#advcash-cards-types) |
+| note                 | String  | Note to transaction                                                            |
+| savePaymentTemplate  | Boolean | Indicator of saving the current payment template                               |
+
+If the validation of the expected payment is successful, the response from the server will contain a blank message. If the validation is not successful, a message with an error contained in its body will be returned.
+
+```js
+
+var arguments = {
+  amount: 0.10,
+  currency: "USD",
+  email: "example@example.com",
+  cardType: "PLASTIC",
+  note: "testing",
+  savePaymentTemplate: true
+}
+
+client.validationSendMoneyToAdvcashCard(arguments).then(function(response) {
+  console.log(response) // null
+})
+.catch(function(error) {
+  console.log(error)
+})
+
+```
+
+> Response
+
+```json
+
+null
+
+```
+
+
 
 ### Transaction Statuses
 
@@ -319,6 +365,13 @@ null
 | GBP   | Pound Sterling     |
 | UAH   | Ukrainian Hryvnia  |
 | BTC   | Bitcoin            |
+
+### ADVCash cards Types
+
+| Value    | Description        |
+|----------|--------------------|
+| VIRTUAL  | Virtual card       |
+| PLASTIC  | Plastic card       |
 
 ## Contributing
 
