@@ -327,6 +327,52 @@ null
 
 ```
 
+### validationSendMoneyToEcurrency
+
+Validation of Withdrawal to a third-party payment system
+
+#### Arguments
+
+| Name                 | Type    | Description                                                                    |
+|----------------------|---------|--------------------------------------------------------------------------------|
+| amount               | Float   | Transaction amount (accuracy – up to two digits after decimal point). Required if ecurrency is not BITCOIN  |
+| btcAmount            | Float   | Transaction amount in BTC currency when you need to withdraw exact BTC amount (accuracy – up to six digits after decimal point). Required if ecurrency is BITCOIN   |
+| currency             | String  | [Transfer currencies](#transfer-currencies)                                    |
+| ecurrency            | String  | [Ecurrencies](#ecurrencies)                                                    |
+| receiver             | String  | ID or wallet of the recipient in the third-party payment system                |
+| note                 | String  | Note to transaction                                                            |
+| savePaymentTemplate  | Boolean | Indicator of saving the current payment template                               |
+
+If the validation of the expected payment is successful, the response from the server will contain a blank message. If the validation is not successful, a message with an error contained in its body will be returned.
+
+```js
+
+var arguments = {
+  amount: 1.00,
+  currency: "USD",
+  ecurrency: "ECOIN",
+  receiver: "1dice8EMZmqKvrGE4Qc9bUFf9PX3xaYDp",
+  note: "testing",
+  savePaymentTemplate: false  
+}
+
+client.validationSendMoneyToEcurrency(arguments).then(function(response) {
+  console.log(response) // null
+})
+.catch(function(error) {
+  console.log(error)
+})
+
+```
+
+> Response
+
+```json
+
+null
+
+```
+
 
 
 ### Transaction Statuses
@@ -372,6 +418,22 @@ null
 |----------|--------------------|
 | VIRTUAL  | Virtual card       |
 | PLASTIC  | Plastic card       |
+
+### Ecurrencies
+
+| Value          | Description                   |
+|----------------|-------------------------------|
+| BITCOIN        | Withdrawal to BTC             |
+| CAPITALIST     | Capitalist payment system     |
+| ECOIN          | Ecoin payment system          |
+| OKPAY          | OkPay payment system          |
+| PAXUM          | Paxum payment system          |
+| PAYEER         | Payeer payment system         |
+| PERFECT_MONEY  | Perfect Money payment system  |
+| WEB_MONEY      | WebMoney payment system       |
+| QIWI           | QIWI payment system           |
+| YANDEX_MONEY   | Yandex.Money payment system   |
+
 
 ## Contributing
 
