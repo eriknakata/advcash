@@ -373,6 +373,121 @@ null
 
 ```
 
+### findTransaction
+
+Transaction Search by ID
+
+#### Arguments
+
+| Name           | Type    | Description       |
+|----------------|---------|-------------------|
+| transactionId  | String  | Transaction ID    |
+
+```js
+
+client.findTransaction("e5383553-f66c-4073-b81d-86e7c3756cdb").then(function(response) {
+  console.log(response)
+})
+
+```
+
+> Response
+
+```json
+
+{ 
+  "id": "e5383553-f66c-4073-b81d-86e7c3756cdb",
+  "activityLevel": 0,
+  "amount": 10.24,
+  "comment": "",
+  "currency": "EUR",
+  "direction": "OUTGOING",
+  "fullCommission": 0.00,
+  "receiverEmail": "receiver@example.com",
+  "sci": false,
+  "senderEmail": "sender@example.com",
+  "startTime": "2017-03-25T19:46:56.843Z",
+  "status": "COMPLETED",
+  "transactionName": "INNER_SYSTEM",
+  "walletDestId": "U768564448973",
+  "walletSrcId": "E5270053223408"
+}
+
+```
+
+### currencyExchange
+
+Intrasystem Currency Exchange
+
+#### Arguments
+
+| Name   | Type    | Description                                                           |
+|--------|---------|-----------------------------------------------------------------------|
+| from   | String  | [Transfer currencies](#transfer-currencies)                           |
+| to     | String  | [Transfer currencies](#transfer-currencies)                           |
+| action | String  | BUY, SELL                                                             |
+| amount | Float   | Transaction amount (accuracy – up to two digits after decimal point)  |
+| note   | String  | Note to transaction                                                   |
+
+```js
+
+var arguments = {
+  from: "USD",
+  to: "EUR",
+  action: "SELL",
+  amount: 1.00,
+  note: "testing"
+}
+
+client.currencyExchange(arguments).then(function(transactionId) {
+  console.log(transactionId)
+})
+
+```
+
+> Response
+
+```json
+
+"1575948b-6ead-426f-8ecf-ee7 aa3969c"
+
+```
+
+### sendMoneyToEmail
+
+Transfer of Funds to Unregistered User via E-mail
+
+#### Arguments
+
+| Name      | Type    | Description                                                           |
+|-----------|---------|-----------------------------------------------------------------------|
+| currency  | String  | [Transfer currencies](#transfer-currencies)                           |
+| email     | String  | E-mail address of the payment recipient unregistered in Advanced Cash system (Immediate after registration in Advanced Cash system, user will receive funds transfer)  |
+| amount    | Float   | Transaction amount (accuracy – up to two digits after decimal point)  |
+| note      | String  | Note to transaction                                                   |
+
+```js
+
+var arguments = {
+  amount: 0.10,
+  currency: 'USD',
+  email: 'example@example.com',
+  note: "testing"
+}
+
+client.sendMoneyToEmail(arguments).then(function(transactionId) {
+  console.log(transactionId)
+})
+
+```
+
+> Response
+
+```json
+
+"1575948b-6ead-426f-8ecf-ee7 aa3969c"
+
+```
 
 
 ### Transaction Statuses
