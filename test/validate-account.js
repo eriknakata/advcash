@@ -11,18 +11,21 @@ const advcashSoapUrl = process.env.ADVCASH_SOAP_URL
 chai.use(chaiAsPromised)
 
 describe('Validate account', () => {
-    it('Should return an object { firstNameMatchingPercentage, lastNameMatchingPercentage }', async () => {
-        const client = await advcash({ password, apiName, accountEmail })
+    describe(`Checking matching the  first and last name of the user in the Advanced Cash system with the name 
+    and last name in a third-party system`, () => {
+            it('Should return an object { firstNameMatchingPercentage, lastNameMatchingPercentage }', async () => {
+                const client = await advcash({ password, apiName, accountEmail })
 
-        const promise = client.validateAccount({
-            email: accountEmail,
-            firstName: "Test first name",
-            lastName: "Test last name"
+                const promise = client.validateAccount({
+                    email: accountEmail,
+                    firstName: "Test first name",
+                    lastName: "Test last name"
+                })
+
+                return Promise.all([
+                    expect(promise).to.eventually.have.property("firstNameMatchingPercentage").with.a("number"),
+                    expect(promise).to.eventually.have.property("lastNameMatchingPercentage").with.a("number"),
+                ])
+            })
         })
-
-        return Promise.all([
-            expect(promise).to.eventually.have.property("firstNameMatchingPercentage").with.a("number"),
-            expect(promise).to.eventually.have.property("lastNameMatchingPercentage").with.a("number"),
-        ])
-    })
 })

@@ -10,23 +10,21 @@ const advcashSoapUrl = process.env.ADVCASH_SOAP_URL
 
 chai.use(chaiAsPromised)
 
-describe('Validation Send Money', () => {
+describe('Currency exchange', () => {
+    describe('Intrasystem Currency Exchange', () => {
+        it('Should return a string', async () => {
 
-    describe('Validation of Intrasystem Transfer', () => {
-        it('Should return a null object', async () => {
             const client = await advcash({ password, apiName, accountEmail })
 
-            const promise = client.validationSendMoney({
+            const promise = client.currencyExchange({
+                from: 'USD',
+                to: 'EUR',
+                action: 'SELL',
                 amount: 0.10,
-                currency: "USD",
-                email: "leonardocadastro69@gmail.com",
-                note: "teste",
-                savePaymentTemplate: true
+                note: "testing currency exchange"
             })
 
-            return Promise.all([
-                expect(promise).to.eventually.equal(null)
-            ])
+            return expect(promise).to.eventually.be.a("string")
         })
     })
 })

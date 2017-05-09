@@ -11,21 +11,23 @@ const advcashSoapUrl = process.env.ADVCASH_SOAP_URL
 chai.use(chaiAsPromised)
 
 describe('Validate accounts', () => {
-    it('Should return an array of object { present, accountEmail }', async () => {
-        const client = await advcash({
-            password: password,
-            apiName: apiName,
-            accountEmail: accountEmail,
+    describe('Validation of Account’s Existence', () => {
+        it('Should return an array of object { present, accountEmail }', async () => {
+            const client = await advcash({
+                password: password,
+                apiName: apiName,
+                accountEmail: accountEmail,
+            })
+
+            const email = 'teste12345@teste.com'
+
+            const promise = client.validateAccounts([email])
+
+            return Promise.all([
+                expect(promise).to.eventually.be.instanceof(Array),
+                expect(promise).to.eventually.have.deep.property('[0].present', false),
+                expect(promise).to.eventually.have.deep.property('[0].accountEmail', email)
+            ]);
         })
-
-        const email = 'teste12345@teste.com'
-
-        const promise = client.validateAccounts([email])
-
-        return Promise.all([
-            expect(promise).to.eventually.be.instanceof(Array),
-            expect(promise).to.eventually.have.deep.property('[0].present', false),
-            expect(promise).to.eventually.have.deep.property('[0].accountEmail', email)
-        ]);
     })
 })

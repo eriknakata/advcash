@@ -5,6 +5,7 @@ import validateAccountsMap from './validate-accounts'
 import requestArgs from './request-args'
 import soap from './soap-client'
 import historyMap from './history'
+import findTransactionMap from './find-transaction'
 
 export default async ({ password, apiName, accountEmail, advcashSoapUrl = 'https://wallet.advcash.com/wsm/merchantWebService?wsdl' }) => {
     const arg0 = requestArgs(apiName, password, accountEmail)
@@ -47,5 +48,20 @@ export default async ({ password, apiName, accountEmail, advcashSoapUrl = 'https
             arg0,
             arg1: { amount, btcAmount, currency, ecurrency, receiver, note, savePaymentTemplate }
         }),
+
+        currencyExchange: ({ from, to, action, amount, note }) => advcashClient("currencyExchange", {
+            arg0,
+            arg1: { from, to, action, amount, note }
+        }),
+
+        sendMoneyToEmail: ({ amount, currency, email, note }) => advcashClient("sendMoneyToEmail", {
+            arg0,
+            arg1: { amount, currency, email, note }
+        }),
+
+        findTransaction: transactionId => advcashClient("findTransaction", {
+            arg0,
+            arg1: transactionId
+        }, findTransactionMap),
     }
 }

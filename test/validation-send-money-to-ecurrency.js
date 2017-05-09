@@ -12,20 +12,24 @@ const address = process.env.ECOIN_ADDRESS
 chai.use(chaiAsPromised)
 
 describe('validation Send Money To Ecurrency', () => {
-    it('Should return a null object', async () => {
-        const client = await advcash({ password, apiName, accountEmail })
 
-        const promise = client.validationSendMoneyToEcurrency({
-            amount: 1.00,
-            currency: "USD",
-            ecurrency: "ECOIN",
-            receiver: address,
-            note: "testing",
-            savePaymentTemplate: false            
+    describe('Validation of Withdrawal to a third-party payment system', () => {
+        
+        it('Should return a null object', async () => {
+            const client = await advcash({ password, apiName, accountEmail })
+
+            const promise = client.validationSendMoneyToEcurrency({
+                amount: 1.00,
+                currency: "USD",
+                ecurrency: "ECOIN",
+                receiver: address,
+                note: "testing",
+                savePaymentTemplate: false
+            })
+
+            return Promise.all([
+                expect(promise).to.eventually.equal(null)
+            ])
         })
-
-        return Promise.all([
-            expect(promise).to.eventually.equal(null)
-        ])
     })
 })
