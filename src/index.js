@@ -63,5 +63,15 @@ export default async ({ password, apiName, accountEmail, advcashSoapUrl = 'https
             arg0,
             arg1: transactionId
         }, findTransactionMap),
+
+        validationCurrencyExchange: (arg1) => advcashClient("validationCurrencyExchange", {
+            arg0,
+            arg1
+        }),
+
+        validationSendMoneyToEmail: (arg1) => advcashClient("validationSendMoneyToEmail", {
+            arg0,
+            arg1
+        }),
     }
 }
