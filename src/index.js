@@ -14,49 +14,49 @@ export default async ({ password, apiName, accountEmail, advcashSoapUrl = 'https
     return {
         getbalances: () => advcashClient("getBalances", { arg0 }, getbalances),
 
-        checkCurrencyExchange: ({ from, to, action, amount }) => advcashClient("checkCurrencyExchange", {
+        checkCurrencyExchange: (arg1) => advcashClient("checkCurrencyExchange", {
             arg0,
-            arg1: { from, to, action, amount }
+            arg1
         }, checkCurrencyMap),
 
-        validateAccount: ({ email, firstName, lastName }) => advcashClient("validateAccount", {
+        validateAccount: (arg1) => advcashClient("validateAccount", {
             arg0,
-            arg1: { email, firstName, lastName }
+            arg1
         }, validateAccountMap),
 
-        validateAccounts: (emails) => advcashClient("validateAccounts", {
+        validateAccounts: (arg1) => advcashClient("validateAccounts", {
             arg0,
-            arg1: emails
+            arg1
         }, validateAccountsMap),
 
-        validationSendMoney: ({ amount, currency, email, walletId, note, savePaymentTemplate }) => advcashClient("validationSendMoney", {
+        validationSendMoney: (arg1) => advcashClient("validationSendMoney", {
             arg0,
-            arg1: { amount, currency, email, walletId, note, savePaymentTemplate }
+            arg1
         }),
 
-        history: ({ from, count, sortOrder, startTimeFrom, startTimeTo, transactionName, transactionStatus, walletId }) => advcashClient("history", {
+        history: (arg1) => advcashClient("history", {
             arg0,
-            arg1: { from, count, sortOrder, startTimeFrom, startTimeTo, transactionName, transactionStatus, walletId }
+            arg1
         }, historyMap),
 
-        validationSendMoneyToAdvcashCard: ({ amount, currency, email, cardType, note, savePaymentTemplate }) => advcashClient("validationSendMoneyToAdvcashCard", {
+        validationSendMoneyToAdvcashCard: (arg1) => advcashClient("validationSendMoneyToAdvcashCard", {
             arg0,
-            arg1: { amount, currency, email, cardType, note, savePaymentTemplate }
+            arg1
         }),
 
-        validationSendMoneyToEcurrency: ({ amount, btcAmount, currency, ecurrency, receiver, note, savePaymentTemplate }) => advcashClient("validationSendMoneyToEcurrency", {
+        validationSendMoneyToEcurrency: (arg1) => advcashClient("validationSendMoneyToEcurrency", {
             arg0,
-            arg1: { amount, btcAmount, currency, ecurrency, receiver, note, savePaymentTemplate }
+            arg1
         }),
 
-        currencyExchange: ({ from, to, action, amount, note }) => advcashClient("currencyExchange", {
+        currencyExchange: (arg1) => advcashClient("currencyExchange", {
             arg0,
-            arg1: { from, to, action, amount, note }
+            arg1
         }),
 
-        sendMoneyToEmail: ({ amount, currency, email, note }) => advcashClient("sendMoneyToEmail", {
+        sendMoneyToEmail: (arg1) => advcashClient("sendMoneyToEmail", {
             arg0,
-            arg1: { amount, currency, email, note }
+            arg1
         }),
 
         findTransaction: transactionId => advcashClient("findTransaction", {
