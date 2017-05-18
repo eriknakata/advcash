@@ -489,6 +489,88 @@ client.sendMoneyToEmail(arguments).then(function(transactionId) {
 
 ```
 
+### validationCurrencyExchange
+
+Validation of Currency Exchange
+
+#### Arguments
+
+| Name    | Type    | Description                                                            |
+|---------|---------|------------------------------------------------------------------------|
+| amount  | Float   | Transaction amount (accuracy – up to two digits after decimal point).  |
+| from    | String  | [Outgoing currency](#transfer-currencies)                              |
+| to      | String  | [Incoming currency](#transfer-currencies)                              |
+| action  | String  | SELL, BUY                                                              |
+| note    | String  | Note to transaction                                                    |
+
+If the validation of the expected payment is successful, the response from the server will contain a blank message. If the validation is not successful, a message with an error contained in its body will be returned.
+
+```js
+
+var arguments = {
+  amount: 1.10,
+  from: "USD",
+  to: "EUR",
+  action: "SELL",
+  note: "testing"
+}
+
+client.validationCurrencyExchange(arguments).then(function(response) {
+  console.log(response) // null
+})
+.catch(function(error) {
+  console.log(error)
+})
+
+```
+
+> Response
+
+```json
+
+null
+
+```
+### validationSendMoneyToEmail
+
+Validation of Funds Transfer to Unregistered User via E-mail
+
+#### Arguments
+
+| Name    | Type    | Description                                                             |
+|--------- |---------|------------------------------------------------------------------------|
+| amount   | Float   | Transaction amount (accuracy – up to two digits after decimal point).  |
+| currency | String  | [Transaction currency](#transfer-currencies)                           |
+| email    | String  | E-mail address of the payment recipient unregistered in Advanced Cash system (Immediately after registration in Advanced Cash system, user will receive funds transfer) |
+| note     | String  | Note to transaction                                                    |
+
+If the validation of the expected payment is successful, the response from the server will contain a blank message. If the validation is not successful, a message with an error contained in its body will be returned.
+
+```js
+
+var arguments = {
+  amount: 1.10,
+  currency: "USD",
+  email: "testing@testing.com",
+  note: "testing"
+}
+
+client.validationSendMoneyToEmail(arguments).then(function(response) {
+  console.log(response) // null
+})
+.catch(function(error) {
+  console.log(error)
+})
+
+```
+
+> Response
+
+```json
+
+null
+
+```
 
 ### Transaction Statuses
 
