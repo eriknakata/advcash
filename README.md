@@ -567,10 +567,84 @@ client.validationSendMoneyToEmail(arguments).then(function(response) {
 > Response
 
 ```json
-
 null
+```
+
+### sendMoney
+
+Intrasystem Payment
+
+#### Arguments
+
+| Name                 | Type    | Description                                                           |
+|----------------------|---------|-----------------------------------------------------------------------|
+| amount               | Float   | Transaction amount (accuracy – up to two digits after decimal point)  |
+| currency             | String  | [Transfer currencies](#transfer-currencies)                           |
+| email                | String  | Recipient’s email (Required if “walletId” is empty)                   |
+| walletId             | String  | Recipient’s wallet (Required if “email” is empty)                     |
+| note                 | String  | Note to transaction                                                   |
+| savePaymentTemplate  | Boolean | Indicator of saving the current payment template                      |
+
+```js
+var arguments = client.sendMoney({
+  amount: 10.50,
+  currency: "USD",
+  email: "sample@sample.com",
+  note: "testing",
+  savePaymentTemplate: true
+})
+
+client.sendMoney(arguments).then(function(response) {
+  console.log(response) // null
+})
+```
+
+> Response
+
+```json
+"1575948b-6ead-426f-8ecf-ee7 aa3969c"
+```
+
+### sendMoneyToAdvcashCard
+
+Transfer of Funds to Advanced Cash Card
+
+#### Arguments
+
+| Name                 | Type    | Description                                                                    |
+|----------------------|---------|--------------------------------------------------------------------------------|
+| amount               | Float   | Transaction amount (accuracy – up to two digits after decimal point)           |
+| currency             | String  | [Transfer currencies](#transfer-currencies)                                    |
+| email                | String  | Email of the user that owns the card                                           |
+| cardType             | String  | [Card type which will be used for the transfer of funds](#advcash-cards-types) |
+| note                 | String  | Note to transaction                                                            |
+| savePaymentTemplate  | Boolean | Indicator of saving the current payment template                               |
+
+```js
+
+var arguments = {
+  amount: 5.00,
+  currency: "USD",
+  email: "sample@sample.com",
+  cardType: "PLASTIC",
+  note: "testing",
+  savePaymentTemplate: true
+}
+
+client.sendMoneyToAdvcashCard(arguments).then(function(response) {
+  console.log(response)
+})
 
 ```
+
+> Response
+
+```json
+
+"1575948b-6ead-426f-8ecf-ee7 aa3969c"
+
+```
+
 
 ### Transaction Statuses
 
