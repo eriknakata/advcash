@@ -37,7 +37,7 @@ var advcash = require('advcash');
 var options = {
   password: 'password created previously',
   apiName: 'api created previously',
-  email: 'email used to create the advcash account'
+  accountEmail: 'email used to create the advcash account'
 };
 
 advcash(options).then(function(client) {
