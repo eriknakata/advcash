@@ -6,6 +6,7 @@ import requestArgs from './request-args'
 import soap from './soap-client'
 import historyMap from './history'
 import findTransactionMap from './find-transaction'
+import createBitcoinInvoice from './create-bitcoin-invoice'
 
 export default async ({ password, apiName, accountEmail, advcashSoapUrl = 'https://wallet.advcash.com/wsm/merchantWebService?wsdl' }) => {
     const arg0 = requestArgs(apiName, password, accountEmail)
@@ -83,5 +84,40 @@ export default async ({ password, apiName, accountEmail, advcashSoapUrl = 'https
             arg0,
             arg1
         }),
+
+        validationSendMoneyToBankCard: (arg1) => advcashClient("validationSendMoneyToBankCard", {
+            arg0,
+            arg1
+        }),
+
+        sendMoneyToEcurrency: (arg1) => advcashClient("sendMoneyToEcurrency", {
+            arg0,
+            arg1
+        }),
+
+        validationSendMoneyToBtcE: (arg1) => advcashClient("validationSendMoneyToBtcE", {
+            arg0,
+            arg1
+        }),
+
+        sendMoneyToBtcE: (arg1) => advcashClient("sendMoneyToBtcE", {
+            arg0,
+            arg1
+        }),
+
+        validationSendMoneyToExmo: (arg1) => advcashClient("validationSendMoneyToExmo", {
+            arg0,
+            arg1
+        }),
+
+        sendMoneyToExmo: (arg1) => advcashClient("sendMoneyToExmo", {
+            arg0,
+            arg1
+        }),
+
+        createBitcoinInvoice: (arg1) => advcashClient("createBitcoinInvoice", {
+            arg0,
+            arg1
+        }, createBitcoinInvoice),
     }
 }
