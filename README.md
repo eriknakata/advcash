@@ -645,6 +645,371 @@ client.sendMoneyToAdvcashCard(arguments).then(function(response) {
 
 ```
 
+### validationSendMoneyToBankCard
+
+Validation of Funds Transfer to External Card Not Tied to System
+
+#### Arguments
+
+| Name                 | Type    | Description                                                                             |
+|----------------------|---------|-----------------------------------------------------------------------------------------|
+| amount               | Float   | Transaction amount (accuracy – up to two digits after decimal point)                    |
+| currency             | String  | [Transfer currencies](#transfer-currencies)                                             |
+| cardNumber           | String  | External card number for finds withdrawal                                               |
+| expiryMonth          | String  | Two digits that signify the month of the card’s expiration date (e.g. 09 for September) |
+| expiryYear           | String  | Two last digits of the year of the card’s expiration date (e.g. 17 for year 2017)       |
+| note                 | String  | Note to transaction                                                                     |
+| savePaymentTemplate  | Boolean | Indicator of saving the current payment template                                        |
+
+If the validation of the expected payment is successful, the response from the server will contain a blank message. If the validation is not successful, a message with an error contained in its body will be returned.
+
+```js
+
+var arguments = {
+  amount: 4.00,
+  currency: "USD",
+  cardNumber: "4532881212776308",
+  expiryMonth: "12",
+  expiryYear: "18",
+  note: "testing",
+  savePaymentTemplate: false
+}
+
+client.validationSendMoneyToBankCard(arguments).then(function(response) {
+  console.log(response)
+})
+
+```
+
+> Response
+
+```json
+
+null
+
+```
+
+### sendMoneyToBankCard
+
+Transfer of Funds to External Bank Card
+
+#### Arguments
+
+| Name                 | Type    | Description                                                                             |
+|----------------------|---------|-----------------------------------------------------------------------------------------|
+| amount               | Float   | Transaction amount (accuracy – up to two digits after decimal point)                    |
+| currency             | String  | [Transfer currencies](#transfer-currencies)                                             |
+| cardNumber           | String  | External card number for finds withdrawal                                               |
+| expiryMonth          | String  | Two digits that signify the month of the card’s expiration date (e.g. 09 for September) |
+| expiryYear           | String  | Two last digits of the year of the card’s expiration date (e.g. 17 for year 2017)       |
+| note                 | String  | Note to transaction                                                                     |
+| savePaymentTemplate  | Boolean | Indicator of saving the current payment template                                        |
+
+```js
+
+var arguments = {
+  amount: 4.00,
+  currency: "USD",
+  cardNumber: "4532881212776308",
+  expiryMonth: "12",
+  expiryYear: "18",
+  note: "testing",
+  savePaymentTemplate: false
+}
+
+client.sendMoneyToBankCard(arguments).then(function(response) {
+  console.log(response)
+})
+
+```
+
+> Response
+
+```json
+
+"20931ce4-f4c9-4cc5-84f7-f7efb38c939c"
+
+```
+
+### sendMoneyToEcurrency
+
+Withdrawal to a third-party payment system
+
+#### Arguments
+
+| Name                 | Type    | Description                                                                             |
+|----------------------|---------|-----------------------------------------------------------------------------------------|
+| amount               | Float   | Transaction amount (accuracy – up to two digits after decimal point)                    |
+| btcAmount            | Float   | Transaction amount in BTC currency when you need to withdraw exact BTC amount (accuracy – up to six digits after decimal point)                    |
+| currency             | String  | [Transfer currencies](#transfer-currencies)                                             |
+| ecurrency            | String  | [Ecurrencies](#ecurrencies)                                                             |
+| cardNumber           | String  | External card number for finds withdrawal                                               |
+| receiver             | String  | ID or wallet of the recipient in the third-party payment system                         |
+| note                 | String  | Note to transaction                                                                     |
+| savePaymentTemplate  | Boolean | Indicator of saving the current payment template                                        |
+
+```js
+
+var arguments = {
+  amount: 1.00,
+  currency: "USD",
+  ecurrency: "ECOIN",
+  receiver: address,
+  note: "testing",
+  savePaymentTemplate: false
+}
+
+client.sendMoneyToEcurrency(arguments).then(function(response) {
+  console.log(response)
+})
+
+```
+
+> Response
+
+```json
+
+"d28a6da7-451d-41c4-93f8-cd0084c72f96"
+
+```
+
+### createBitcoinInvoice
+
+Creating bitcoin invoice
+
+#### Arguments
+
+| Name                 | Type    | Description                                                                             |
+|----------------------|---------|-----------------------------------------------------------------------------------------|
+| amount               | Float   | Transaction amount (accuracy – up to two digits after decimal point)                    |
+| currency             | String  | [Transfer currencies](#transfer-currencies)                                             |
+| sciName              | String  | Shopping Cart Interface name (optional parameter)                                       |
+| orderId              | String  | Id of the order (optional parameter)                                                    |
+| note                 | String  | Note to transaction (optional parameter)                                                |
+
+```js
+
+var arguments = {
+  amount: 1.0,
+  currency: "USD"
+}
+
+client.createBitcoinInvoice(arguments).then(function(response) {
+  console.log(response)
+})
+
+```
+
+> Response
+
+```json
+
+{ 
+  "bitcoinAddress": "1C8jQAkHwE87bTmyDXSKdNyf8B8MnGYhpp",
+  "bitcoinAmount": 0.001388,
+  "amount": 1.00,
+  "currency": "USD",
+  "sciName": "sci_name",
+  "orderId": "12345",
+  "note": "Some note"
+}
+
+```
+
+### register
+
+Register a new user
+
+#### Arguments
+
+| Name                 | Type    | Description        |
+|----------------------|---------|--------------------|
+| email                | String  | User's email       |
+| firstName            | String  | User's first name  |
+| lastName             | String  | User's last name   |
+| language             | String  | en, ru             |
+
+If the registration of the user is successful, the response from the server will contain a blank message. If the registration is not successful, a message with an error contained in its body will be returned.
+
+```js
+
+var arguments = {
+  email: "test@test.com",
+  firstName: "First name",
+  lastName: "Last name",
+  language: "en"
+}
+
+client.register(arguments).then(function(response) {
+  console.log(response)
+})
+
+```
+
+> Response
+
+```json
+
+null
+
+```
+
+### sendMoneyToExmo
+
+Withdrawal to EXMO
+
+#### Arguments
+
+| Name                 | Type    | Description                                                                             |
+|----------------------|---------|-----------------------------------------------------------------------------------------|
+| amount               | Float   | Transaction amount (accuracy – up to two digits after decimal point)                    |
+| currency             | String  | [Transfer currencies](#transfer-currencies)                                             |
+| note                 | String  | Note to transaction (optional parameter)                                                |
+
+```js
+
+var arguments = {
+  amount: 1.10,
+  currency: "USD",
+  note: "testing"
+}
+
+client.sendMoneyToExmo(arguments).then(function(response) {
+  console.log(response)
+})
+.catch(function(error) {
+  console.log(error)
+})
+
+```
+
+> Response
+
+```json
+
+{
+  "id": "d28a6da7-451d-41c4-93f8-cd0084c72f96",
+  "coupon": "EX-CODE_22562_USD1d7f906bd79cb8e13200aa55c227a2fe9328bf17"
+}
+
+```
+
+### validationSendMoneyToBtcE
+
+Validation of Withdrawal to BTC-E
+
+#### Arguments
+
+| Name                 | Type    | Description                                                                             |
+|----------------------|---------|-----------------------------------------------------------------------------------------|
+| amount               | Float   | Transaction amount (accuracy – up to two digits after decimal point)                    |
+| currency             | String  | [Transfer currencies](#transfer-currencies)                                             |
+| note                 | String  | Note to transaction (optional parameter)                                                |
+
+If the validation of the expected payment is successful, the response from the server will contain a blank message. If the validation is not successful, a message with an error contained in its body will be returned.
+
+```js
+
+var arguments = {
+  amount: 1.10,
+  currency: "USD",
+  note: "testing"
+}
+
+client.validationSendMoneyToBtcE(arguments).then(function(response) {
+  console.log(response) // null
+})
+.catch(function(error) {
+  console.log(error)
+})
+```
+
+> Response
+
+```json
+
+null
+
+```
+
+### validationSendMoneyToExmo
+
+Validation of Withdrawal to EXMO
+
+#### Arguments
+
+| Name                 | Type    | Description                                                                             |
+|----------------------|---------|-----------------------------------------------------------------------------------------|
+| amount               | Float   | Transaction amount (accuracy – up to two digits after decimal point)                    |
+| currency             | String  | [Transfer currencies](#transfer-currencies)                                             |
+| note                 | String  | Note to transaction (optional parameter)                                                |
+
+If the validation of the expected payment is successful, the response from the server will contain a blank message. If the validation is not successful, a message with an error contained in its body will be returned.
+
+```js
+
+var arguments = {
+  amount: 1.10,
+  currency: "USD",
+  note: "testing"
+}
+
+client.validationSendMoneyToExmo(arguments).then(function(response) {
+  console.log(response) // null
+})
+.catch(function(error) {
+  console.log(error)
+})
+
+```
+
+> Response
+
+```json
+
+null
+
+```
+
+### sendMoneyToBtcE
+
+Withdrawal to BTC-E
+
+#### Arguments
+
+| Name                 | Type    | Description                                                                             |
+|----------------------|---------|-----------------------------------------------------------------------------------------|
+| amount               | Float   | Transaction amount (accuracy – up to two digits after decimal point)                    |
+| currency             | String  | [Transfer currencies](#transfer-currencies)                                             |
+| note                 | String  | Note to transaction (optional parameter)                                                |
+
+```js
+
+var arguments = {
+  amount: 1.10,
+  currency: "USD",
+  note: "testing"
+}
+
+client.sendMoneyToBtcE(arguments).then(function(response) {
+  console.log(response)
+})
+.catch(function(error) {
+  console.log(error)
+})
+```
+
+> Response
+
+```json
+
+{
+  "id": "d28a6da7-451d-41c4-93f8-cd0084c72f96",
+  "coupon": "EX-CODE_22562_USD1d7f906bd79cb8e13200aa55c227a2fe9328bf17"
+}
+
+```
+
 
 ### Transaction Statuses
 
