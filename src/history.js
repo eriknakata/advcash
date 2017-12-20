@@ -1,4 +1,4 @@
-export default transactions => transactions.map(transaction => {
+export default transactions => (transactions) ? transactions.map(transaction => {
     return {
         id: transaction.id,
         comment: transaction.comment || '',
@@ -16,4 +16,4 @@ export default transactions => transactions.map(transaction => {
         direction: transaction.direction,
         orderId: transaction.orderId || ''
     }
-})
+}) : []
