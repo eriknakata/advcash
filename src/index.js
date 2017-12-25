@@ -134,7 +134,7 @@ export default async ({ password, apiName, accountEmail }) => {
     }
 }
 
-let advcashClient;
+let advcashClient = await soap(advcashSoapUrl); 
 
 setInterval(async () => {
     advcashClient = await soap(advcashSoapUrl);
