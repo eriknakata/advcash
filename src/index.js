@@ -9,6 +9,7 @@ import findTransactionMap from './find-transaction'
 import createBitcoinInvoice from './create-bitcoin-invoice'
 
 const advcashSoapUrl = 'https://wallet.advcash.com/wsm/merchantWebService?wsdl';
+let advcashClient;
 
 export default async ({ password, apiName, accountEmail }) => {
     if (advcashClient) {
@@ -134,7 +135,9 @@ export default async ({ password, apiName, accountEmail }) => {
     }
 }
 
-let advcashClient = await soap(advcashSoapUrl); 
+(async () => {
+    advcashClient = await soap(advcashSoapUrl);
+})();
 
 setInterval(async () => {
     advcashClient = await soap(advcashSoapUrl);
